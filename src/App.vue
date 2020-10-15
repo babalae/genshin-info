@@ -88,13 +88,13 @@
           <div class="column is-one-quarter">
             <div>
               <p class="heading heading-custom">华丽宝箱数</p>
-              <p class="title title-custom">{{ roleInfo.stats.precious_chest_number }}</p>
+              <p class="title title-custom">{{ roleInfo.stats.luxurious_chest_number }}</p>
             </div>
           </div>
           <div class="column is-one-quarter">
             <div>
               <p class="heading heading-custom">珍贵宝箱数</p>
-              <p class="title title-custom">{{ roleInfo.stats.luxurious_chest_number }}</p>
+              <p class="title title-custom">{{ roleInfo.stats.precious_chest_number }}</p>
             </div>
           </div>
           <div class="column is-one-quarter">
