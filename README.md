@@ -1,16 +1,16 @@
 # 原神角色信息查询工具
 
-## Project setup
+## 依赖
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 启动
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 编译需要发布的版本
 ```
 npm run build
 ```
