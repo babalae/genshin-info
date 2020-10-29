@@ -15,9 +15,6 @@
     </nav>
     <section class="section">
       <div class="container">
-        <article class="message is-warning">
-          <div class="message-body">当前米游社对外接口已经被限制，本项目完结...</div>
-        </article>
         <div class="field has-addons">
           <p class="control">
             <input id="uid" class="input" type="text" placeholder="请输入UID" v-model="uid" @keyup.enter="search">
