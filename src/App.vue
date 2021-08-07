@@ -15,32 +15,43 @@
     </nav>
     <section class="section">
       <div class="container">
-        <div class="field has-addons">
-          <p class="control">
-            <input id="uid" class="input" type="text" placeholder="请输入UID" v-model="uid" @keyup.enter="search">
-          </p>
-          <p class="control">
-            <a class="button is-info" :class="{'is-loading': searching}" @click="search">查询</a>
-          </p>
-        </div>
-        <article class="message" :class="tipsClass">
-          <div class="message-body">
-            {{ tips }}
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              🔍 查询栏
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="field has-addons">
+              <p class="control">
+                <input id="uid" class="input" type="text" placeholder="请输入UID" v-model="uid" @keyup.enter="search">
+              </p>
+              <p class="control">
+                <a class="button is-info" :class="{'is-loading': searching}" @click="search">查询</a>
+              </p>
+            </div>
+            <article class="message" :class="tipsClass">
+              <div class="message-body">
+                {{ tips }}
+              </div>
+            </article>
           </div>
-        </article>
+        </div>
+        <div v-if="baseInfo.stats !== undefined">
+          <BaseInfo :base-info-data="baseInfo"></BaseInfo>
+        </div>
       </div>
     </section>
-    <section class="section" v-if="baseInfo.stats !== undefined">
-      <BaseInfo :base-info-data="baseInfo"></BaseInfo>
-    </section>
+
   </div>
 </template>
 
 <script>
 import BaseInfo from './components/BaseInfo.vue'
+
 export default {
   name: 'App',
-  components: { BaseInfo },
+  components: {BaseInfo},
   data() {
     return {
       uid: '',
@@ -470,29 +481,9 @@ export default {
   /*background-color: #e2e2e2;*/
 }
 
-.avatars-box {
-  display: flex;
-  flex-wrap: wrap;
-}
 
-.avatar-content {
-  width: 100%;
-  padding: 0.5rem 1rem;
-}
 
-@media screen and (min-width: 768px) {
-  .avatar-content {
-    width: 50%;
-    padding: 0.5rem 1rem;
-  }
-}
 
-@media screen and (min-width: 1024px) {
-  .avatar-content {
-    width: 25%;
-    padding: 0.5rem 1rem;
-  }
-}
 
 .level-item-custom {
   width: 25%;

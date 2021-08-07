@@ -4,7 +4,7 @@
       <div class="box">
         <article class="media">
           <div class="media-left">
-            <figure class="image is-64x64">
+            <figure class="image" style="width: 96px">
               <img :src="avatar.image" alt="Image">
             </figure>
           </div>
@@ -18,6 +18,8 @@
                 等级：{{ avatar.level }}
                 <br>
                 好感度：{{ avatar.fetter }}
+                <br>
+                命座：{{ avatar.actived_constellation_num }}
                 <br>
               </p>
             </div>
@@ -36,5 +38,27 @@ export default {
 </script>
 
 <style scoped>
+.avatars-box {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.avatar-content {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .avatar-content {
+    width: 50%;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .avatar-content {
+    width: 25%;
+    padding: 0.5rem 1rem;
+  }
+}
 </style>

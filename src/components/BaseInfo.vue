@@ -1,93 +1,58 @@
 <template>
   <div class="container">
-    <div class="columns is-multiline is-mobile has-text-centered">
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">活跃天数</p>
-          <p class="title title-custom">{{ baseInfoData.stats.active_day_number }}</p>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">成就达成数</p>
-          <p class="title title-custom">{{ baseInfoData.stats.achievement_number }}</p>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">风神瞳</p>
-          <p class="title title-custom">{{ baseInfoData.stats.anemoculus_number }}</p>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">岩神瞳</p>
-          <p class="title title-custom">{{ baseInfoData.stats.geoculus_number }}</p>
-        </div>
+    <div class="card" v-if="baseInfoData.stats !== undefined">
+      <header class="card-header">
+        <p class="card-header-title">
+          数据总览
+        </p>
+      </header>
+      <div class="card-content">
+        <SummaryBox :stats-data="baseInfoData.stats"></SummaryBox>
       </div>
     </div>
-    <div class="columns is-multiline is-mobile has-text-centered">
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">获得角色数</p>
-          <p class="title title-custom">{{ baseInfoData.stats.avatar_number }}</p>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">解锁传送点</p>
-          <p class="title title-custom">{{ baseInfoData.stats.way_point_number }}</p>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">解锁秘境</p>
-          <p class="title title-custom">{{ baseInfoData.stats.domain_number }}</p>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">深境螺旋</p>
-          <p class="title title-custom">{{ baseInfoData.stats.spiral_abyss }}</p>
-        </div>
+    <div class="card"
+         v-if="baseInfoData.world_explorations !== undefined && baseInfoData.world_explorations.length > 0">
+      <header class="card-header">
+        <p class="card-header-title">
+          世界探索
+        </p>
+      </header>
+      <div class="card-content">
+        <ExplorationBox :exploration-data="baseInfoData.world_explorations"></ExplorationBox>
       </div>
     </div>
-    <div class="columns is-multiline is-mobile has-text-centered">
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">华丽宝箱数</p>
-          <p class="title title-custom">{{ baseInfoData.stats.luxurious_chest_number }}</p>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">珍贵宝箱数</p>
-          <p class="title title-custom">{{ baseInfoData.stats.precious_chest_number }}</p>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">精致宝箱数</p>
-          <p class="title title-custom">{{ baseInfoData.stats.exquisite_chest_number }}</p>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div>
-          <p class="heading heading-custom">普通宝箱数</p>
-          <p class="title title-custom">{{ baseInfoData.stats.common_chest_number }}</p>
-        </div>
+    <div class="card" v-if="baseInfoData.homes !== undefined&& baseInfoData.homes.length > 0">
+      <header class="card-header">
+        <p class="card-header-title">
+          尘歌壶
+        </p>
+      </header>
+      <div class="card-content">
+        <HomeBox :home-data="baseInfoData.homes"></HomeBox>
       </div>
     </div>
-    <AvatarBox :avatar-data="baseInfoData.avatars"></AvatarBox>
+    <div class="card" v-if="baseInfoData.avatars !== undefined">
+      <header class="card-header">
+        <p class="card-header-title">
+          角色列表
+        </p>
+      </header>
+      <div class="card-content">
+        <AvatarBox :avatar-data="baseInfoData.avatars"></AvatarBox>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import SummaryBox from './SummaryBox.vue'
+import ExplorationBox from './ExplorationBox.vue'
+import HomeBox from './HomeBox.vue'
 import AvatarBox from './AvatarBox.vue'
 
 export default {
   name: "BaseInfo",
-  components: {AvatarBox},
+  components: {SummaryBox, ExplorationBox, HomeBox, AvatarBox},
   props: ['baseInfoData']
 }
 </script>
