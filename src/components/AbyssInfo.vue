@@ -9,7 +9,7 @@
       <div class="card-content">
         <SummaryBox :data="abyssInfoData"></SummaryBox>
         <hr/>
-        <div class="columns">
+        <div class="columns" v-if="abyssInfoData.reveal_rank !== undefined">
           <div class="column">
             <strong>出战次数：</strong>
           </div>
@@ -17,14 +17,29 @@
         <RevealRankBox :data="abyssInfoData.reveal_rank"></RevealRankBox>
       </div>
     </div>
-    <div class="card" v-if="abyssInfoData.defeat_rank.length > 0">
+    <div class="card">
       <header class="card-header">
         <p class="card-header-title">
-          最多击破排行
+          详细数据
         </p>
       </header>
       <div class="card-content">
-        <DefeatRankBox :data="abyssInfoData.defeat_rank"></DefeatRankBox>
+        <div class="columns is-multiline">
+          <RankBox :tittle="'最多击破数'" :data="abyssInfoData.defeat_rank"></RankBox>
+          <RankBox :tittle="'最强一击'"  :data="abyssInfoData.take_damage_rank"></RankBox>
+          <RankBox :tittle="'承受最多伤害'"  :data="abyssInfoData.energy_skill_rank"></RankBox>
+          <RankBox :tittle="'元素爆发次数'"  :data="abyssInfoData.normal_skill_rank"></RankBox>
+        </div>
+      </div>
+    </div>
+    <div class="card" v-if="abyssInfoData.floors !== undefined">
+      <header class="card-header">
+        <p class="card-header-title">
+          阵容
+        </p>
+      </header>
+      <div class="card-content">
+        <FloorBox :floor-data="abyssInfoData.floors"></FloorBox>
       </div>
     </div>
   </div>
@@ -32,54 +47,19 @@
 
 <script>
 import SummaryBox from './abyss/SummaryBox.vue'
-import DefeatRankBox from './abyss/DefeatRankBox.vue'
+import RankBox from './abyss/RankBox.vue'
 import RevealRankBox from './abyss/RevealRankBox.vue'
-// import AvatarBox from './abyss/AvatarBox.vue'
+import FloorBox from './abyss/FloorBox.vue'
+
 export default {
   name: "AbyssInfo",
-  components: {SummaryBox, DefeatRankBox, RevealRankBox},
+  components: {SummaryBox, RankBox, RevealRankBox, FloorBox},
   props: ['abyssInfoData'],
   mounted() {
     this.dealWithData()
   },
 
   methods: {
-    dateFormat(timestamp, formats) {
-      // formats格式包括
-      // 1. Y-m-d
-      // 2. Y-m-d H:i:s
-      // 3. Y年m月d日
-      // 4. Y年m月d日 H时i分
-      formats = formats || 'Y-m-d';
-
-      let zero = function (value) {
-        if (value < 10) {
-          return '0' + value;
-        }
-        return value;
-      };
-
-      let myDate = timestamp ? new Date(timestamp) : new Date();
-
-      let year = myDate.getFullYear();
-      let month = zero(myDate.getMonth() + 1);
-      let day = zero(myDate.getDate());
-
-      let hour = zero(myDate.getHours());
-      let minute = zero(myDate.getMinutes());
-      let second = zero(myDate.getSeconds());
-
-      return formats.replace(/Y|m|d|H|i|s/ig, function (matches) {
-        return ({
-          Y: year,
-          m: month,
-          d: day,
-          H: hour,
-          i: minute,
-          s: second
-        })[matches];
-      });
-    },
     dealWithData() {
       this.abyssInfoData.start_time = this.dateFormat(this.abyssInfoData.start_time * 1000, "Y-m-d")
       this.abyssInfoData.end_time = this.dateFormat(this.abyssInfoData.end_time * 1000, "Y-m-d")

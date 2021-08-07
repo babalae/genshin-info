@@ -59,8 +59,8 @@ export default {
   data() {
     return {
       uid: '',
-      baseInfo: {},
-      abyssInfo: {},
+      baseInfo: undefined,
+      abyssInfo: undefined,
 
       tips: '请输入UID点击查询',
       tipsClass: '',
@@ -1879,19 +1879,5 @@ export default {
 
 .star-4 {
   background-color: #7968a2;
-}
-
-.avatar-card {
-  width: 100px;
-  border-radius: 0.25rem;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%);
-}
-
-.avatar-card .desc {
-  background-color: #f1f1f1;
-  border-radius: 0 0 0.25rem 0.25rem;
-  text-align: center;
 }
 </style>
