@@ -26,6 +26,12 @@
           </div>
         </article>
       </div>
+<!--      <div :class="'avatar-card star-' + avatar.rarity">
+        <img :src="avatar.image" alt="">
+        <div class="desc">
+          Lv.{{ avatar.level }} 🧡 {{ avatar.fetter }}
+        </div>
+      </div>-->
     </div>
   </div>
 </template>

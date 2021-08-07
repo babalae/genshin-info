@@ -45,10 +45,10 @@
 </template>
 
 <script>
-import SummaryBox from './SummaryBox.vue'
-import ExplorationBox from './ExplorationBox.vue'
-import HomeBox from './HomeBox.vue'
-import AvatarBox from './AvatarBox.vue'
+import SummaryBox from './base/SummaryBox.vue'
+import ExplorationBox from './base/ExplorationBox.vue'
+import HomeBox from './base/HomeBox.vue'
+import AvatarBox from './base/AvatarBox.vue'
 
 export default {
   name: "BaseInfo",
