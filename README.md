@@ -6,7 +6,7 @@
 
 地址：https://babalae.github.io/genshin-info/
 
-## 后端代码参考
+## 参考
 
 https://github.com/Womsxd/YuanShen_User_Info
 
