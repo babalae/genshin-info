@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="abyssInfoData.reveal_rank.length > 0">
     <div class="card">
       <header class="card-header">
         <p class="card-header-title">
@@ -9,7 +9,7 @@
       <div class="card-content">
         <SummaryBox :data="abyssInfoData"></SummaryBox>
         <hr/>
-        <div class="columns" v-if="abyssInfoData.reveal_rank !== undefined">
+        <div class="columns">
           <div class="column">
             <strong>出战次数：</strong>
           </div>
