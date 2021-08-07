@@ -10,6 +10,7 @@
   "dependencies": {
     "bulma": "^0.9.1",
     "core-js": "^3.6.5",
+    "html2canvas": "^1.2.1",
     "vue": "^2.6.11"
   },
   "devDependencies": {

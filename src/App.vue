@@ -13,22 +13,49 @@
         </a>
       </div>
     </nav>
-    <section class="section">
+    <section class="section" ref="displayPanel">
       <div class="container">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
               🔍 查询栏
             </p>
+            <div class="card-header-icon" aria-label="more options"
+                 v-if="baseInfo !== undefined || abyssInfo !== undefined">
+              <span class="icon" @click="toImage">📥</span>
+            </div>
           </header>
           <div class="card-content">
-            <div class="field has-addons">
-              <p class="control">
-                <input id="uid" class="input" type="text" placeholder="请输入UID" v-model="uid" @keyup.enter="search">
-              </p>
-              <p class="control">
-                <a class="button is-info" :class="{'is-loading': searching}" @click="search">查询</a>
-              </p>
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <!--                <div class="field is-narrow">
+                                  <div class="control">
+                                    <label class="radio">
+                                      <input type="radio" name="member">
+                                      基本信息
+                                    </label>
+                                    <label class="radio">
+                                      <input type="radio" name="member">
+                                      深渊
+                                    </label>
+                                    <label class="radio">
+                                      <input type="radio" name="member">
+                                      我全都要
+                                    </label>
+                                  </div>
+                                </div>-->
+                <div class="field has-addons is-narrow">
+                  <p class="control">
+                    <input id="uid" class="input" type="text" placeholder="请输入UID" v-model="uid" @keyup.enter="search">
+                  </p>
+                  <p class="control">
+                    <a class="button is-info" :class="{'is-loading': searching}" @click="search">查询</a>
+                  </p>
+                </div>
+                <div class="field is-narrow" v-if="baseInfo !== undefined || abyssInfo !== undefined">
+                  <button class="button is-success" @click="toImage">下载图片</button>
+                </div>
+              </div>
             </div>
             <article class="message" :class="tipsClass">
               <div class="message-body">
@@ -52,6 +79,7 @@
 <script>
 import BaseInfo from './components/BaseInfo.vue'
 import AbyssInfo from './components/AbyssInfo.vue'
+import html2canvas from 'html2canvas';
 
 export default {
   name: 'App',
@@ -1848,6 +1876,20 @@ export default {
       //   }
       //   this.searching = false
       // })
+    },
+    toImage() {
+      html2canvas(this.$refs.displayPanel, {
+        useCORS: true
+      }).then(canvas => {
+        let dataURL = canvas.toDataURL("image/png");
+        this.imgUrl = dataURL;
+        if (this.imgUrl !== "") {
+          let alink = document.createElement('a')
+          alink.href = dataURL
+          alink.download = 'genshin-info-uid-' + this.uid + '.png'
+          alink.click()
+        }
+      });
     }
   }
 }
