@@ -18,7 +18,7 @@
                 {{ dateFormat(level.battles[0].timestamp * 1000, 'Y-m-d H:i:s') }}
               </small>
             </span>
-            <div class="columns is-vcentered is-multiline is-mobile">
+            <div class="columns is-vcentered is-centered is-multiline is-mobile">
               <!-- 上半 -->
               <div class="column is-narrow avatar-column" v-for="(avatar,k1) in level.battles[0].avatars"
                    :key="k1+1000">
