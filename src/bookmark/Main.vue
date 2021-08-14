@@ -29,7 +29,7 @@
 import BaseInfo from './../components/BaseInfo.vue'
 import AbyssInfo from './../components/AbyssInfo.vue'
 export default {
-  name: "genshin-info-webpack2",
+  name: "genshin-info-render",
   components: {BaseInfo, AbyssInfo},
   props: ['baseInfo', 'abyssInfo']
 }

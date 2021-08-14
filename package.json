@@ -1,11 +1,12 @@
 {
   "name": "genshin-info",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "bh": "webpack --progress"
   },
   "dependencies": {
     "bulma": "^0.9.1",
@@ -18,9 +19,15 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
+    "css-loader": "^2.1.1",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
   },
   "eslintConfig": {
     "root": true,

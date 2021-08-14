@@ -3,7 +3,7 @@ name: Build and Deploy
 # 指定触发 workflow 的条件
 # 指定触发事件时，可以限定分支或标签
 # 当前是 只有 master分支上触发 push 事件时才执行工作流任务
-on: 
+on:
   push:
     branches:
       - master
@@ -36,4 +36,4 @@ jobs:
           # Vue CLI默认打包到 dist 目录
           FOLDER: dist # The folder the action should deploy.
           # 在向 BRANCH 分支推送代码前，可以指定构建脚本
-          BUILD_SCRIPT: npm install && npm run build # The build script the action should run prior to deploying.
+          BUILD_SCRIPT: npm install && npm run build && npm run bh # The build script the action should run prior to deploying.
