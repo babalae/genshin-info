@@ -28,25 +28,10 @@
           <div class="card-content">
             <div class="field is-horizontal">
               <div class="field-body">
-                <!--                <div class="field is-narrow">
-                                  <div class="control">
-                                    <label class="radio">
-                                      <input type="radio" name="member">
-                                      基本信息
-                                    </label>
-                                    <label class="radio">
-                                      <input type="radio" name="member">
-                                      深渊
-                                    </label>
-                                    <label class="radio">
-                                      <input type="radio" name="member">
-                                      我全都要
-                                    </label>
-                                  </div>
-                                </div>-->
                 <div class="field has-addons is-narrow">
                   <p class="control">
-                    <input id="uid" class="input" type="text" placeholder="请输入UID" maxlength="9" v-model="uid" @keyup.enter="search">
+                    <input id="uid" class="input" type="text" placeholder="请输入UID" maxlength="9" v-model="uid"
+                           @keyup.enter="search">
                   </p>
                   <p class="control">
                     <a class="button is-info" :class="{'is-loading': searching}" @click="search">查询</a>
@@ -110,39 +95,51 @@ export default {
       this.tips = 'UID: ' + this.uid + ' 查询成功'
       this.tipsClass = 'is-success'
       this.searching = false
-      fetch('//service-joam13r8-1252025612.gz.apigw.tencentcs.com/uid/' + this.uid, {
-        method: 'GET',
-        mode: 'cors',
-      }).then(res => res.json()).then(json => {
-        if (json.retcode == 0) {
-          this.baseInfo = json.data
-          fetch('//service-joam13r8-1252025612.gz.apigw.tencentcs.com/abyss/' + this.uid, {
-            method: 'GET',
-            mode: 'cors',
-          }).then(res => res.json()).then(json => {
-            if (json.retcode == 0) {
-              this.abyssInfo = json.data
-              this.tips = 'UID: ' + this.uid + ' 查询成功'
-              this.tipsClass = 'is-success'
-            } else if (json.retcode == -1) {
-              this.tips = '查询无结果，可能造成这种情况的原因：1.UID不存在 2.没有在米游社同步并公开角色信息'
-              this.tipsClass = 'is-warning'
-            } else {
-              this.tips = '查询失败！' + json.message
-              this.tipsClass = 'is-danger'
-            }
-            this.searching = false
-          })
-        } else if (json.retcode == -1) {
+
+      Promise.all([this.queryBaseInfo(),this.queryAbyssInfo()]).then(values => {
+        let baseInfoJson = values[0]
+        let abyssInfoJson = values[1]
+        if (baseInfoJson.retcode == 0) {
+          this.baseInfo = baseInfoJson.data
+          this.abyssInfo = abyssInfoJson.data
+          this.tips = 'UID: ' + this.uid + ' 查询成功'
+          this.tipsClass = 'is-success'
+        } else if (baseInfoJson.retcode == -1) {
           this.tips = '查询无结果，可能造成这种情况的原因：1.UID不存在 2.没有在米游社同步并公开角色信息'
           this.tipsClass = 'is-warning'
         } else {
-          this.tips = '查询失败！' + json.message
+          this.tips = '查询失败！' + baseInfoJson.message
           this.tipsClass = 'is-danger'
         }
         this.searching = false
+      }).catch(err => {
+        this.tips = '查询失败！' + err
+        this.tipsClass = 'is-danger'
+      });
+    },
+    queryBaseInfo() {
+      return new Promise((resolve, reject) => {
+        fetch('//service-joam13r8-1252025612.gz.apigw.tencentcs.com/uid/' + this.uid, {
+          method: 'GET',
+          mode: 'cors',
+        }).then(res => res.json()).then(json => {
+          resolve(json)
+        }).catch(function (e) {
+          reject(e)
+        })
       })
-
+    },
+    queryAbyssInfo() {
+      return new Promise((resolve, reject) => {
+        fetch('//service-joam13r8-1252025612.gz.apigw.tencentcs.com/abyss/' + this.uid, {
+          method: 'GET',
+          mode: 'cors',
+        }).then(res => res.json()).then(json => {
+          resolve(json)
+        }).catch(function (e) {
+          reject(e)
+        })
+      })
     },
     toImage() {
       html2canvas(this.$refs.displayPanel, {
