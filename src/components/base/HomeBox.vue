@@ -31,7 +31,6 @@ export default {
 <style scoped>
 .exploration-card {
   color: white;
-  width: 400px;
   height: 200px;
   background-repeat: no-repeat;
   background-size: 100% 100%;

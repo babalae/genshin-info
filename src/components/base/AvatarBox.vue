@@ -12,12 +12,12 @@
             <div class="content">
               <p>
                 <strong>{{ avatar.name }}</strong>
-                <small> {{ avatar.element }} </small>
-                <small>{{ avatar.rarity }}⭐</small>
+<!--                <small> {{ avatar.element }} </small>-->
+<!--                <small>{{ avatar.rarity }}⭐</small>-->
                 <br>
                 等级：{{ avatar.level }}
                 <br>
-                好感度：{{ avatar.fetter }}
+                好感：{{ avatar.fetter }}
                 <br>
                 命座：{{ avatar.actived_constellation_num }}
                 <br>

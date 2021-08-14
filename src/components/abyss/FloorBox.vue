@@ -63,12 +63,12 @@ export default {
 
 <style scoped>
 .avatar-card {
-  width: 50px;
+  width: 38px;
   border-radius: 0.25rem;
 }
 
 .avatar-card .desc {
-  background-color: #f1f1f1;
+  background-color: #cccccc;
   border-radius: 0 0 0.25rem 0.25rem;
   text-align: center;
   font-size: 12px;
