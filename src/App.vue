@@ -92,9 +92,6 @@ export default {
       }
       this.searching = true
       this.tips = '查询中，请耐心等待...'
-      this.tips = 'UID: ' + this.uid + ' 查询成功'
-      this.tipsClass = 'is-success'
-      this.searching = false
 
       Promise.all([this.queryBaseInfo(),this.queryAbyssInfo()]).then(values => {
         let baseInfoJson = values[0]
