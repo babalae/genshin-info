@@ -70,7 +70,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .star-5 {
   background-color: #be844e;
 }
