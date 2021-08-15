@@ -26,9 +26,9 @@
       <div class="card-content">
         <div class="columns is-multiline">
           <RankBox :tittle="'最多击破数'" :data="abyssInfoData.defeat_rank"></RankBox>
-          <RankBox :tittle="'最强一击'"  :data="abyssInfoData.take_damage_rank"></RankBox>
-          <RankBox :tittle="'承受最多伤害'"  :data="abyssInfoData.energy_skill_rank"></RankBox>
-          <RankBox :tittle="'元素爆发次数'"  :data="abyssInfoData.normal_skill_rank"></RankBox>
+          <RankBox :tittle="'承受最多伤害'"  :data="abyssInfoData.take_damage_rank"></RankBox>
+          <RankBox :tittle="'元素爆发次数'"  :data="abyssInfoData.energy_skill_rank"></RankBox>
+          <RankBox :tittle="'元素战技释放数'"  :data="abyssInfoData.normal_skill_rank"></RankBox>
         </div>
       </div>
     </div>
