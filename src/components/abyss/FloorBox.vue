@@ -36,7 +36,7 @@
                 </div>
               </div>
               <!-- 下半 -->
-              <div class="column is-narrow avatar-column" v-for="(avatar,k3) in level.battles[0].avatars"
+              <div class="column is-narrow avatar-column" v-for="(avatar,k3) in level.battles[1].avatars"
                    :key="k3+2000">
                 <div :class="'avatar-card star-' + avatar.rarity">
                   <img :src="avatar.icon" alt="">
