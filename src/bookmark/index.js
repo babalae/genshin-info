@@ -1,5 +1,6 @@
 import Main from './Main.vue'
 import DateUtils from './../utils/DateUtils.js'
+import html2canvas from 'html2canvas';
 // import Vue from "vue";
 
 Main.install = function (Vue) {
@@ -18,6 +19,7 @@ const install = function (Vue) {
 if (typeof window !== 'undefined' && window.Vue) {
     install(window.Vue);
     Vue.use(DateUtils);
+    Vue.use(html2canvas);
 }
 
 export default {
