@@ -3,7 +3,7 @@
     <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="">
-          原神角色信息查询
+          <strong>原神角色信息查询</strong>
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -12,9 +12,26 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="https://github.com/babalae/genshin-info" target="_blank">
+            Github
+          </a>
+          <a class="navbar-item" href="https://babalae.github.io/bookmarklet/" target="_blank">
+            小书签
+          </a>
+        </div>
+      </div>
     </nav>
     <section class="section" ref="displayPanel">
       <div class="container">
+        <article class="message is-warning">
+          <div class="message-body">
+            由于米游社的限制，一个 cookie 每天只能查询 30 位玩家的信息，当前的机器人账户完全不够使用的。<br/>
+            如果提示 “查询次数已经耗尽” ，可以使用小书签方式（使用当前浏览器登录的 cookie）进行查询： <a href="https://babalae.github.io/bookmarklet/">https://babalae.github.io/bookmarklet/</a><br/>
+            查询结果展示的信息是完全一样的，而且更加安全、快捷
+          </div>
+        </article>
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
@@ -93,7 +110,7 @@ export default {
       this.searching = true
       this.tips = '查询中，请耐心等待...'
 
-      Promise.all([this.queryBaseInfo(),this.queryAbyssInfo()]).then(values => {
+      Promise.all([this.queryBaseInfo(), this.queryAbyssInfo()]).then(values => {
         let baseInfoJson = values[0]
         let abyssInfoJson = values[1]
         if (baseInfoJson.retcode == 0) {
@@ -103,6 +120,12 @@ export default {
           this.tipsClass = 'is-success'
         } else if (baseInfoJson.retcode == -1) {
           this.tips = '查询无结果，可能造成这种情况的原因：1.UID不存在 2.没有在米游社同步并公开角色信息'
+          this.tipsClass = 'is-warning'
+        } else if (baseInfoJson.retcode == 10102) {
+          this.tips = '该UID没有在米游社公开角色信息。' + baseInfoJson.message
+          this.tipsClass = 'is-warning'
+        } else if (baseInfoJson.retcode == 10101) {
+          this.tips = '当天查询次数已经耗尽，请明天再来吧。' + baseInfoJson.message
           this.tipsClass = 'is-warning'
         } else {
           this.tips = '查询失败！' + baseInfoJson.message
