@@ -18,7 +18,13 @@
             Github
           </a>
           <a class="navbar-item" href="https://babalae.github.io/bookmarklet/" target="_blank">
-            小书签
+            🔖小书签
+          </a>
+          <a class="navbar-item" href="https://github.com/babalae/genshin-fishing-toy" target="_blank">
+            🐟自动钓鱼
+          </a>
+          <a class="navbar-item" href="https://github.com/babalae/genshin-account" target="_blank">
+            🛠️多账号快速切换
           </a>
         </div>
       </div>
