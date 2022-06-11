@@ -31,6 +31,11 @@
     </nav>
     <section class="section" ref="displayPanel">
       <div class="container">
+        <article class="message is-danger">
+          <div class="message-body">
+            由于云函数的收费，当前项目已弃坑，有兴趣的话可以看看上方的其他原神相关的项目👆
+          </div>
+        </article>
         <article class="message is-warning">
           <div class="message-body">
             由于米游社的限制，一个 cookie 每天只能查询 30 位玩家的信息，当前的机器人账户完全不够使用的。<br/>
